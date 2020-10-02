@@ -29,17 +29,42 @@ export default class App extends Component {
         .then(res => {
           return res.json();
         }).then(json => {
-          console.log(json);
+          this.setState({
+            candidates: json.candidates
+          })
         })
 
     }, 1000);
   }
 
   render() {
-    return (
-      <div className="App" >
+    const { candidates } = this.state;
 
+    if (candidates.length === 0) {
+      return (
+        <div className="preloader-wrapper big active">
+          <div className="spinner-layer spinner-blue-only">
+            <div className="circle-clipper left">
+              <div className="circle"></div>
+            </div><div className="gap-patch">
+              <div className="circle"></div>
+            </div><div className="circle-clipper right">
+              <div className="circle"></div>
+            </div>
+          </div>
+        </div>
+      )
+    }
+
+    return (
+      <div>
+        {candidates.map(({ id, name, votes }) => {
+          return (<p key={id}>{name} - {votes}</p>)
+        })
+        }
       </div>
-    );
+    )
+
+
   }
 }
