@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Header from './components/Header';
 
 export default class App extends Component {
 
@@ -58,6 +59,7 @@ export default class App extends Component {
 
     return (
       <div>
+        <Header title="Votação" />
         {candidates.map(({ id, name, votes }) => {
           return (<p key={id}>{name} - {votes}</p>)
         })
