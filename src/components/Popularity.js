@@ -1,5 +1,7 @@
 import React from 'react'
 
+import css from './popularity.module.css'
+
 const STARS = {
   empty: '☆',
   full: '★'
@@ -13,7 +15,7 @@ export default function Popularity({ value }) {
   const emptyStars = STARS.empty.repeat(MAX_STARS - value);
 
   return (
-    <div>
+    <div className={css.popularity}>
       {fullStars}{emptyStars}
     </div >
   )
