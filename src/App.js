@@ -32,8 +32,14 @@ export default class App extends Component {
         .then(res => {
           return res.json();
         }).then(json => {
+
+          const previousValues = this.state.candidates.map(({ id, votes, percentage }) => {
+            return { id, votes, percentage };
+          })
+
           this.setState({
-            candidates: json.candidates
+            candidates: json.candidates,
+            previousValues
           })
         })
 
@@ -41,7 +47,7 @@ export default class App extends Component {
   }
 
   render() {
-    const { candidates } = this.state;
+    const { candidates, previousValues } = this.state;
 
     if (candidates.length === 0) {
       return (
@@ -52,7 +58,7 @@ export default class App extends Component {
     return (
       <div className="container">
         <Header title="Votação" />
-        <Candidates candidates={candidates} />
+        <Candidates candidates={candidates} previousValues={previousValues} />
       </div>
     )
 
