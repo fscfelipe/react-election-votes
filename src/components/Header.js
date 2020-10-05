@@ -1,9 +1,11 @@
 import React from 'react'
 
+import css from './header.module.css'
+
 export default function Header({ title }) {
   return (
     <div>
-      {title}
+      <h1 className={css.title}>{title}</h1>
     </div>
   )
 }
